@@ -8,12 +8,18 @@
     }
 ?>
 <form action="upload.php" method="POST" enctype="multipart/form-data">
-    <label for="upload">Upload a a file : </label><input type="file" name="upload" id="upload"><br>
-    <input type="submit" value="Send">
+    <label for="upload">Upload a a file : </label><input type="file" name="upload" id="upload" required><br>
+    <input type="submit" value="Send";>
 </form>
 
 <table border="0">
-<?php foreach ($data as $article):?>
+<?php if (count($data) == 0):?>
+    <tr><td>No file existing.</td></tr>
+
+<?php 
+    endif;
+    foreach ($data as $article):
+?>
     <tr>
         <td><i class="fa fa-file" aria-hidden="true"></i></td>
         <td><?= $article["file_name"]?></td>
@@ -24,4 +30,3 @@
     </tr>
 <?php endforeach;?>
 </table>
-
