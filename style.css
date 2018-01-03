@@ -66,6 +66,23 @@ main > * {
     top: -100px;
 }
 
+table {
+    width: 80vw;
+    text-align: center;
+}
+
+td:nth-child(2) {
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #FFF;
+}
+
+tr:nth-child(odd) {
+    background-color: #ebddf0;
+}
+
 a, a:visited {
     text-decoration: inherit;
 }
