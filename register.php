@@ -23,6 +23,7 @@ if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
         
         $q = "INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES (NULL, '".$creation."', '".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$password."')";
         mysqli_query($link, $q);
+        mkdir('users/'.$username);
         
         header('Location: index.php');
         exit();
