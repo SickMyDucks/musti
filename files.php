@@ -24,7 +24,7 @@
         <td><i class="fa fa-file" aria-hidden="true"></i></td>
         <td><?= $article["file_name"]?></td>
         <td><?= $article["modified_last"]?></td>
-        <td><i class="fa fa-download" aria-hidden="true"></i></td>
+        <td><a href="http://musti.keepthis4.me/users/<?= $_SESSION['username'].'/'.$article["file_name"]?>" download="<?=$article["file_name"]?>"><i class="fa fa-download" aria-hidden="true"></i></a></td>
         <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
         <td><i class="fa fa-trash" aria-hidden="true"></i></td>
     </tr>
