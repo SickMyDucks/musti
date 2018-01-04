@@ -99,9 +99,9 @@ td button {
     outline: none;
 }
 
-td span {
-    position: relative;
-    left: 70%;
+td:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
 }
 
 td button:hover {
