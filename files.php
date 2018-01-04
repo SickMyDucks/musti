@@ -16,6 +16,14 @@
         <tr><td>No file existing.</td></tr>
     <?php endif;?>
         <form action="actions.php" method="POST" id="files">
+            <tr>
+                <td></td>
+                <td>File Name</td>
+                <td>Modified Last</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         <?php foreach ($data as $article):?>
             <tr>
                 <td><i class="fa fa-file" aria-hidden="true"></i></td>
