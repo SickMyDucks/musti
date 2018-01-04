@@ -9,13 +9,16 @@ if (isset($_POST)) {
         $q = "SELECT file_name FROM files WHERE id = " . $file_id;
         $filename = mysqli_query($link, $q);
         $filename = mysqli_fetch_assoc($filename);
-        var_dump($filename);
-        echo '<br>'. 'users/'.$_SESSION['username'].'/'.$filename["file_name"];
         $q = "UPDATE files SET file_name = 'edited', file_path = 'users/" . $_SESSION['username'] . "/" . "editedfile'" . " WHERE id = " . $file_id;
         mysqli_query($link, $q);
         rename('users/'.$_SESSION['username'].'/'.$filename["file_name"], 'users/'.$_SESSION['username'].'/'. 'editedfile');
     } else {
-        echo 'hi there';
+        $q = "SELECT file_name FROM files WHERE id = " . $file_id;
+        $filename = mysqli_query($link, $q);
+        $filename = mysqli_fetch_assoc($filename);
+        $q = "DELETE FROM files WHERE id = " . $file_id;
+        mysqli_query($link, $q);
+        unlink('users/'.$_SESSION['username'].'/'.$filename["file_name"]);
     }
 }
     
