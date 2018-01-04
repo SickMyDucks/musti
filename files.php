@@ -15,7 +15,7 @@
     <?php if (count($data) == 0):?>
         <tr><td>No file existing.</td></tr>
     <?php endif;?>
-        <form action="actions.php" method="POST">
+        <form action="actions.php" method="POST" id="files">
         <?php foreach ($data as $article):?>
             <tr>
                 <td><i class="fa fa-file" aria-hidden="true"></i></td>
