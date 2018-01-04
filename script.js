@@ -15,7 +15,6 @@ window.onload = function() {
             this.parentElement.children[1].focus();
             validate.onclick = function() {
                 this.children[0].value = this.parentElement.innerText;
-                debugger;
             };
             this.parentElement.children[1].onblur = function() {
                 this.parentElement.children[1].removeAttribute('contenteditable');
