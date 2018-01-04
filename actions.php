@@ -9,7 +9,7 @@ if (isset($_POST)) {
         $q = "SELECT file_name FROM files WHERE id = " . $file_id;
         $filename = mysqli_query($link, $q);
         $filename = mysqli_fetch_assoc($filename);
-        $q = "UPDATE files SET file_name = 'edited', file_path = 'users/" . $_SESSION['username'] . "/" . "editedfile'" . " WHERE id = " . $file_id;
+        $q = "UPDATE files SET file_name = 'editedfile', file_path = 'users/" . $_SESSION['username'] . "/" . "editedfile'" . " WHERE id = " . $file_id;
         mysqli_query($link, $q);
         rename('users/'.$_SESSION['username'].'/'.$filename["file_name"], 'users/'.$_SESSION['username'].'/'. 'editedfile');
     } else {
