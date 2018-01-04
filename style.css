@@ -99,8 +99,33 @@ td button {
     outline: none;
 }
 
+td span {
+    position: relative;
+    left: 70%;
+}
+
 td button:hover {
     cursor: pointer;
+}
+
+td:nth-child(2) span:first-child button:hover {
+    color:#2ecc71;
+}
+
+td:nth-child(2) span:last-child button:hover {
+    color:red;
+}
+
+td:nth-child(4) button:hover {
+    color:#9b59b6;
+}
+
+td:nth-child(5):hover {
+    color:#e67e22;
+}
+
+td:nth-child(6) button:hover {
+    color:#e74c3c;
 }
 
 label {
