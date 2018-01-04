@@ -20,9 +20,9 @@
                 <td></td>
                 <td>File Name</td>
                 <td>Modified Last</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Download</td>
+                <td>Edit</td>
+                <td>Delete</td>
             </tr>
         <?php foreach ($data as $article):?>
             <tr>
