@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://use.fontawesome.com/5252655cc7.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Musti</title>
 </head>
