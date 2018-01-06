@@ -14,8 +14,8 @@
     <table border="0">
     <?php if (count($data) == 0):?>
         <tr><td>No file existing.</td></tr>
-    <?php endif;?>
-        <form action="actions.php" method="POST" id="files">
+    <?php else:?>
+        <form action="index.php" method="POST" id="files">
             <tr>
                 <td></td>
                 <td>File Name</td>
@@ -24,10 +24,11 @@
                 <td>Edit</td>
                 <td>Delete</td>
             </tr>
+    <?php endif;?>
         <?php foreach ($data as $article):?>
             <tr>
                 <td><i class="fa fa-file" aria-hidden="true"></i></td>
-                <td><?= $article["file_name"]?></td>
+                <td><span><?= $article["file_name"]?></span></td>
                 <td><?= $article["modified_last"]?></td>
                 <td><button type="submit" name="download<?= $article["id"]?>"><i class="fa fa-download" aria-hidden="true"></i></button></td>
                 <td name="edit<?= $article["id"]?>"><i class="fa fa-pencil" aria-hidden="true"></i></td>
