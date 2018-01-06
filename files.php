@@ -26,14 +26,14 @@
                 <td>Delete</td>
             </tr>
     <?php endif;?>
-        <?php foreach ($data as $$item):?>
+        <?php foreach ($data as $item):?>
             <tr>
                 <td><i class="fa fa-file" aria-hidden="true"></i></td>
-                <td><span><?= $$item["file_name"]?></span></td>
-                <td><?= $$item["modified_last"]?></td>
-                <td><button type="submit" name="download<?= $$item["id"]?>"><i class="fa fa-download" aria-hidden="true"></i></button></td>
-                <td name="edit<?= $$item["id"]?>"><i class="fa fa-pencil" aria-hidden="true"></i></td>
-                <td><button type="submit" name="delete<?= $$item["id"]?>"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                <td><span><?= $item["file_name"]?></span></td>
+                <td><?= $item["modified_last"]?></td>
+                <td><button type="submit" name="download<?= $item["id"]?>"><i class="fa fa-download" aria-hidden="true"></i></button></td>
+                <td name="edit<?= $item["id"]?>"><i class="fa fa-pencil" aria-hidden="true"></i></td>
+                <td><button type="submit" name="delete<?= $item["id"]?>"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
         <?php endforeach;?>
         </form>
