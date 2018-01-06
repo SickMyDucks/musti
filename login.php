@@ -1,5 +1,6 @@
 <?php
 require('init.php');
+$login_error = '';
 $username = '';
 $password = '';
 if (!empty($_POST['username']) && !empty($_POST['password']))
@@ -12,7 +13,7 @@ if (!empty($_POST['username']) && !empty($_POST['password']))
     $user = mysqli_fetch_assoc($result);
     if ($user === NULL)
     {
-        $errors[] = 'Invalid username or password';
+        $login_error = 'Invalid username or password';
     }
     else
     {
@@ -27,19 +28,14 @@ if (!empty($_POST['username']) && !empty($_POST['password']))
 $title = "Login";
 ob_start();
 ?>
-<div class="col">
-    <form action="login.php" method="POST">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" value="<?= $username ?>">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
+<form action="login.php" method="POST">
+    <div class="errors"><?= $login_error ?></div>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" value="<?= $username ?>"><br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <button type="submit">Login</button>
+</form>
 <?php
 $content = ob_get_contents();
 ob_end_clean();
