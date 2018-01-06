@@ -60,6 +60,7 @@ main {
     align-items: center;
     justify-content: center;
     height: 70vh;
+    overflow-y: scroll;
 }
 main > * {
     position: relative;
