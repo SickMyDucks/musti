@@ -1,9 +1,16 @@
 window.onload = function() {
+    logs = document.querySelector('.logs');
+    if (logs.innerHTML == 'Sorry, file already exists.') {
+        logs.style.color = 'red';
+        cleanLogs(2000);
+    } else {
+        logs.style.color = 'green';
+        cleanLogs(2000);
+    }
     edit = document.querySelectorAll('td:nth-child(5)');
     for (var i in edit) {
         edit[i].onclick = function() {
             buttonValue = this.attributes[0].value;
-            console.log(buttonValue);
             this.parentElement.children[1].children[0].setAttribute('contenteditable', 'true');
             this.parentElement.children[1].children[0].setAttribute('name', buttonValue);
             validate = document.createElement('span');
@@ -18,10 +25,15 @@ window.onload = function() {
                 this.children[0].value = this.parentElement.parentElement.innerText;
                 data = this.children[0].value;
             };
-            this.parentElement.children[1].onblur = function() {
-                this.parentElement.children[1].removeAttribute('contenteditable');
-                this.parentElement.children[1].removeChild(this.parentElement.children[1].querySelector('div'));
+
+            this.parentElement.children[1].children[0].onblur = function() {
+                this.parentElement.children[0].removeAttribute('contenteditable');
+                this.parentElement.removeChild(this.parentElement.children[1]);
             };
         };
     }
 };
+
+function cleanLogs(time) {
+    setTimeout(function() {logs.innerHTML = '';}, time);
+}
