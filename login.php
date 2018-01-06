@@ -8,21 +8,17 @@ if (!empty($_POST['username']) && !empty($_POST['password']))
     $username = htmlentities($_POST['username']);
     $password = $_POST['password'];
     
-    $q = "SELECT * FROM users WHERE password = '". $password . "' AND username = '" . $username . "'";
+    $q = "SELECT * FROM users WHERE username = '" . $username . "'";
     $result = mysqli_query($link, $q);
     $user = mysqli_fetch_assoc($result);
-    if ($user === NULL)
-    {
-        $login_error = 'Invalid username or password';
-    }
-    else
-    {
+    if (password_verify($_POST['password'], $user['password']) === true) {
         session_start();
         $_SESSION['id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-    
         header('Location: index.php');
         exit();
+    } else {
+        $login_error = 'Invalid username or password';
     }
 }
 $title = "Login";

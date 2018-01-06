@@ -34,8 +34,9 @@ if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
     if ($password === $password_verification)
     {
         $creation = date('Y-m-d H:i:s');
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
-        $q = "INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES (NULL, '".$creation."', '".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$password."')";
+        $q = "INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES (NULL, '".$creation."', '".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$hashed_password."')";
         mysqli_query($link, $q);
         mkdir('users/'.$username);
         
