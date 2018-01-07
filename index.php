@@ -64,9 +64,10 @@ if (isset($_POST)) {
         /* Edit */
         } else if (substr($index, 0, 4) == "edit") {
             $path_of_the_file = "users/" . $_SESSION['username'] . "/" . $_POST[$index];
-            $q = "UPDATE files SET file_name = ?, file_path = ? WHERE id = ?";
+            $creation = date('Y-m-d H:i:s');
+            $q = "UPDATE files SET file_name = ?, file_path = ?, modified_last = ? WHERE id = ?";
             $stmt = mysqli_prepare($link, $q);
-            mysqli_stmt_bind_param($stmt, 'ssi', $_POST[$index], $path_of_the_file, $file_id);
+            mysqli_stmt_bind_param($stmt, 'sssi', $_POST[$index], $path_of_the_file, $creation, $file_id);
             mysqli_stmt_execute($stmt);
 
             rename('users/'.$_SESSION['username'].'/'.$filename, 'users/'.$_SESSION['username'].'/'. $_POST[$index]);
