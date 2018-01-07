@@ -1,6 +1,6 @@
 window.onload = function() {
     logs = document.querySelector('.logs');
-    if (logs.innerHTML == 'Sorry, file already exists.') {
+    if (logs.innerHTML == 'Sorry, file already exists.' || logs.innerHTML == "Invalid username or password") {
         logs.style.color = 'red';
         cleanLogs(2000);
     } else {
@@ -22,13 +22,17 @@ window.onload = function() {
             this.parentElement.children[1].querySelector('div').appendChild(cancel);
             this.parentElement.children[1].children[0].focus();
             validate.onclick = function() {
+                //debugger;
                 this.children[0].value = this.parentElement.parentElement.innerText;
                 data = this.children[0].value;
             };
-
+            
             this.parentElement.children[1].children[0].onblur = function() {
-                this.parentElement.children[0].removeAttribute('contenteditable');
-                this.parentElement.removeChild(this.parentElement.children[1]);
+                setTimeout(function() {
+                    this.parentElement.children[0].removeAttribute('contenteditable');
+                    this.parentElement.removeChild(this.parentElement.children[1]);
+                }, 100);
+                
             };
         };
     }
