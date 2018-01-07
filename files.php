@@ -1,11 +1,22 @@
 <?php 
-    $q = "SELECT id, file_name, modified_last FROM files WHERE owned_by_user_id = '". $_SESSION['id'] . "'";
-    $result = mysqli_query($link, $q);
+    $q = "SELECT id, file_name, modified_last FROM files WHERE owned_by_user_id = ?";
+    $stmt = mysqli_prepare($link, $q);
+    mysqli_stmt_bind_param($stmt, 'i', $_SESSION['id']);
+    
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $fileID, $fileName, $modifiedLast);
+    
     $data = [];
-    while ($row = mysqli_fetch_assoc($result))
+    while (mysqli_stmt_fetch($stmt))
     {
+        $row = [];
+        $row['id'] = $fileID;
+        $row['file_name'] = $fileName;
+        $row['modified_last'] = $modifiedLast;
         $data[] = $row;
     }
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
 ?>
 <form action="index.php" method="POST" enctype="multipart/form-data">
     <label for="upload">Upload a a file : </label><input type="file" name="upload" id="upload" required><br>

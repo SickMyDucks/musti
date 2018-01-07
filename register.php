@@ -35,9 +35,14 @@ if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
     {
         $creation = date('Y-m-d H:i:s');
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $q = "INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($link, $q);
+        mysqli_stmt_bind_param($stmt, 'ssssss', $creation, $firstname, $lastname, $username, $email, $hashed_password);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($link);
         
-        $q = "INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES (NULL, '".$creation."', '".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$hashed_password."')";
-        mysqli_query($link, $q);
         mkdir('users/'.$username);
         
         header('Location: index.php');
@@ -47,8 +52,6 @@ if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
 $title = "Register";
 ob_start();
 ?>
-<pre><?php var_dump($_POST);
-var_dump($password_error);?></pre>
 <form action="register.php" method="POST">
     <label>First Name</label>
     <input type="text" name="firstname" value="<?php echo $firstname; ?>"><br>

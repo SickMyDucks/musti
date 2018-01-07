@@ -8,9 +8,20 @@ if (!empty($_POST['username']) && !empty($_POST['password']))
     $username = htmlentities($_POST['username']);
     $password = $_POST['password'];
     
-    $q = "SELECT * FROM users WHERE username = '" . $username . "'";
-    $result = mysqli_query($link, $q);
-    $user = mysqli_fetch_assoc($result);
+    $q = "SELECT `id`, `username`, `password` FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($link, $q);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $user_id, $user_name, $hashed);
+    while (mysqli_stmt_fetch($stmt)) {
+        $user = [];
+        $user['id'] = $user_id;
+        $user['username'] = $user_name;
+        $user['password'] = $hashed;
+    }
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+
     if (password_verify($_POST['password'], $user['password']) === true) {
         session_start();
         $_SESSION['id'] = $user['id'];
@@ -21,11 +32,10 @@ if (!empty($_POST['username']) && !empty($_POST['password']))
         $login_error = 'Invalid username or password';
     }
 }
-$title = "Login";
 ob_start();
 ?>
 <form action="login.php" method="POST">
-    <div class="errors"><?= $login_error ?></div>
+    <div class="logs"><?= $login_error ?></div>
     <label for="username">Username</label>
     <input type="text" name="username" id="username" value="<?= $username ?>"><br>
     <label for="password">Password</label>
