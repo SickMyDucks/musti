@@ -27,10 +27,11 @@ window.onload = function() {
                 data = this.children[0].value;
             };
             
-            this.parentElement.children[1].children[0].onblur = function() {
+            this.parentElement.children[1].children[0].onblur = function(e) {
                 setTimeout(function() {
-                    this.parentElement.children[0].removeAttribute('contenteditable');
-                    this.parentElement.removeChild(this.parentElement.children[1]);
+                    //debugger;
+                    e.target.removeAttribute('contenteditable');
+                    e.target.parentElement.removeChild(e.target.parentElement.children[1]);
                 }, 100);
                 
             };
