@@ -5,15 +5,37 @@ $email_error = '';
 $password_error = '';
 
 if (!empty($_POST['sent']))
-{
-    if (strlen($_POST['username']) < 4)
+{   
+    $q = "SELECT username FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($link, $q);
+    mysqli_stmt_bind_param($stmt, 's', $_POST['username']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $usernameField);
+    
+    while (mysqli_stmt_fetch($stmt))
+    {   
+        $usernameExisting = $usernameField;
+    }
+    mysqli_stmt_close($stmt);
+
+    $isFormValid = true;
+    if (strlen($_POST['username']) < 4) {
         $username_error = "Username too short";
-    elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+        $isFormValid = false;
+    } elseif (!empty($usernameExisting)) {
+        $username_error = 'Username already taken, choose another one.';
+        $isFormValid = false;
+    } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $email_error = "Invalid email !";
-    elseif (strlen($_POST['password']) < 8)
+        $isFormValid = false;
+    } elseif (strlen($_POST['password']) < 8) {
         $password_error = 'Password too short';
-    elseif ($_POST['password'] != $_POST['password_verification'])
+        $isFormValid = false;
+    } elseif ($_POST['password'] != $_POST['password_verification']) {
         $password_error = "Passwords do not match";
+        $isFormValid = false;
+    }
+        
 }
 $username = isset($_POST['username']) ? $_POST['username'] : "";
 $email = isset($_POST['email']) ? $_POST['email'] : "";
@@ -31,7 +53,7 @@ if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
     $password = $_POST['password'];
     $password_verification = $_POST['password_verification'];
     
-    if ($password === $password_verification)
+    if ($password === $password_verification && $isFormValid)
     {
         $creation = date('Y-m-d H:i:s');
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -49,7 +71,6 @@ if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
         exit();
     }
 }
-$title = "Register";
 ob_start();
 ?>
 <form action="register.php" method="POST">
