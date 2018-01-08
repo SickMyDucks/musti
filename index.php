@@ -1,6 +1,7 @@
 <?php require('init.php');
 /* UPLOAD*/
-$target_dir = "users/".$_SESSION['username']."/";
+
+
 if (isset($_FILES["upload"]["name"])) {
     $file_name = basename($_FILES["upload"]["name"]);
     $is_file_set = true;
@@ -8,7 +9,11 @@ if (isset($_FILES["upload"]["name"])) {
     $file_name = "";
     $is_file_set = false;
 }
-$target_file = $target_dir . $file_name;
+if (isset($_SESSION['username'])) {
+    $target_dir = "users/".$_SESSION['username']."/";
+    $target_file = $target_dir . $file_name;
+
+}
 
 
 $uploadOk = 1;
@@ -20,7 +25,7 @@ if (file_exists($target_file) && substr($target_file, -1) != "/") {
 
 if ($is_file_set == true && $uploadOk === 1) {
     if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)) {
-    $logs = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    $logs = "The file ". basename( $_FILES["upload"]["name"]). " has been uploaded.";
     
     } else {
         $logs = "Sorry, there was an error uploading your file.";
@@ -29,7 +34,7 @@ if ($is_file_set == true && $uploadOk === 1) {
 /* END OF UPLOAD*/ 
 
 /* Actions : Download, Edit, Delete */
-if (isset($_POST)) {
+if (isset(array_keys($_POST)[0])) {
     $key = array_keys($_POST)[0];
     if (substr($key, 0, 8) == "download" || substr($key, 0, 4) == "edit" || substr($key, 0, 6) == "delete") { //Checks the value of the button
         $file_key = filter_var($key, FILTER_SANITIZE_NUMBER_INT); //Fetches the number at the end of the value
