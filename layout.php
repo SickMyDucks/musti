@@ -18,7 +18,7 @@
             <?php if (!isset($_SESSION['username'])): ?>
             <a href="register.php">Register</a>
             <?php else: ?>
-            Connected as <?= $_SESSION['username']?>
+            Connected as <?= htmlentities($_SESSION['username'])?>
             <?php endif; ?>
         </div>
         <div class="col">

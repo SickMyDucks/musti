@@ -7,13 +7,22 @@ window.onload = function() {
         logs.style.color = 'green';
         cleanLogs(2000);
     }
+
+    download = document.querySelectorAll('.download');
     edit = document.querySelectorAll('td:nth-child(5)');
+    remove = document.querySelectorAll('.delete');
+
+    for (var i in download) {
+        download[i].onclick = function() {
+            this.name = this.children[0].attributes[2].value;
+        };
+    }
+    
+
     for (var i in edit) {
         edit[i].onclick = function() {
-            debugger;
-            buttonValue = this.children[0].attributes[0].value;
+            buttonValue = this.children[1].attributes[2].value;
             this.parentElement.children[1].children[0].setAttribute('contenteditable', 'true');
-            this.parentElement.children[1].children[0].setAttribute('name', buttonValue);
             validate = document.createElement('span');
             validate.innerHTML = '<button type="submit" name="' + buttonValue + '" form="files"><i class="fa fa-check" aria-hidden="true" name=></i></button>';
             cancel = document.createElement('span');
@@ -23,19 +32,22 @@ window.onload = function() {
             this.parentElement.children[1].querySelector('div').appendChild(cancel);
             this.parentElement.children[1].children[0].focus();
             validate.onclick = function() {
-                //debugger;
                 this.children[0].value = this.parentElement.parentElement.innerText;
-                data = this.children[0].value;
             };
             
             this.parentElement.children[1].children[0].onblur = function(e) {
                 setTimeout(function() {
-                    //debugger;
                     e.target.removeAttribute('contenteditable');
                     e.target.parentElement.removeChild(e.target.parentElement.children[1]);
                 }, 100);
                 
             };
+        };
+    }
+
+    for (var i in remove) {
+        remove[i].onclick = function() {
+            this.name = this.children[0].attributes[2].value;
         };
     }
 };
