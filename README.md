@@ -21,8 +21,10 @@ New users will have their directory named after their username in the directory 
 
 ```
 users/
+├── .htaccess
 └── johndoe
-    └── corgi.jpg
+    ├── corgi.jpg
+    └── Sujet_Filer.pdf
 ```
 
 To try the platform, you can log in with the following credentials :
@@ -33,3 +35,6 @@ password : `corgibutt`
 
 
 Otherwise, you can simply create a new account by registering.
+
+## Directories access
+in the directory `users/` there is a `.htaccess` (Apache) that will prevent any user, logged in or not to download or display in the browser any file. It will return a 403 Forbiden error instead.
