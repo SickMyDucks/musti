@@ -23,11 +23,12 @@
     <input type="submit" value="Send">
     <div class="logs"><?= $logs?></div>
 </form>
-    <table border="0">
+<form action="index.php" method="POST" id="files">
+    <table>
     <?php if (count($data) == 0):?>
         <tr><td>No file existing.</td></tr>
     <?php else:?>
-        <form action="index.php" method="POST" id="files">
+        
             <tr>
                 <td></td>
                 <td>File Name</td>
@@ -43,9 +44,9 @@
                 <td><span><?= $item["file_name"]?></span></td>
                 <td><?= $item["modified_last"]?></td>
                 <td><button type="submit" name="download<?= $item["id"]?>"><i class="fa fa-download" aria-hidden="true"></i></button></td>
-                <td name="edit<?= $item["id"]?>"><i class="fa fa-pencil" aria-hidden="true"></i></td>
+                <td><input type="hidden" name="edit<?= $item["id"]?>"><i class="fa fa-pencil" aria-hidden="true"></i></td>
                 <td><button type="submit" name="delete<?= $item["id"]?>"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
         <?php endforeach;?>
-        </form>
     </table>
+</form>
