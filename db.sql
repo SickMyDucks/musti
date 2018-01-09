@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Dim 07 Janvier 2018 à 22:20
+-- Généré le :  Mar 09 Janvier 2018 à 00:50
 -- Version du serveur :  10.1.23-MariaDB-9+deb9u1
 -- Version de PHP :  7.0.19-1
 
@@ -19,28 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `musti`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `files`
---
-
-CREATE TABLE `files` (
-  `id` int(11) NOT NULL,
-  `file_name` varchar(255) NOT NULL,
-  `file_path` varchar(255) NOT NULL,
-  `owned_by_user_id` int(11) NOT NULL,
-  `modified_last` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Contenu de la table `files`
---
-
-INSERT INTO `files` (`id`, `file_name`, `file_path`, `owned_by_user_id`, `modified_last`) VALUES
-(1, 'corgi.jpg', 'users/johndoe/corgi.jpg', 1, '2018-01-07 01:04:51'),
-(2, 'Sujet_Filer.pdf', 'users/johndoe/Sujet_Filer.pdf', 1, '2018-01-07 03:11:26');
 
 -- --------------------------------------------------------
 
@@ -70,13 +48,6 @@ INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `ema
 --
 
 --
--- Index pour la table `files`
---
-ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `owned_by_user_id` (`owned_by_user_id`);
-
---
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -86,11 +57,6 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour les tables exportées
 --
 
---
--- AUTO_INCREMENT pour la table `files`
---
-ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
