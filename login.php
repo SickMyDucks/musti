@@ -3,6 +3,10 @@ require('init.php');
 $login_error = '';
 $username = '';
 $password = '';
+
+if (isset($_SESSION['username'])) {
+    session_destroy();
+}
 if (!empty($_POST['username']) && !empty($_POST['password']))
 {
     $username = htmlentities($_POST['username']);
