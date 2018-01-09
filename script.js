@@ -32,7 +32,7 @@ window.onload = function() {
             this.parentElement.children[1].querySelector('div').appendChild(cancel);
             this.parentElement.children[1].children[0].focus();
             validate.onclick = function() {
-                this.children[0].value = this.parentElement.parentElement.innerText;
+                this.children[0].value = this.parentElement.parentElement.children[0].innerHTML;
             };
             
             this.parentElement.children[1].children[0].onblur = function(e) {

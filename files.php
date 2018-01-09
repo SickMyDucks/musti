@@ -1,10 +1,10 @@
 <?php $folder = array_diff(scandir("users/".$_SESSION['username']), array('..', '.'));?>
 <form action="index.php" method="POST" enctype="multipart/form-data">
-    <label for="upload">Upload a a file : </label><input type="file" name="upload" id="upload" required><br>
+    <label for="upload">Upload a file : </label><input type="file" name="upload" id="upload" required><br>
     <input type="submit" value="Send">
     <div class="logs"><?php if (isset($logs)){echo $logs;}?></div>
 </form>
-<form action="index.php" method="POST" id="files">
+<form action="index.php" method="POST" id="files" enctype="multipart/form-data">
     <table>
     <?php if (count($folder) == 0):?>
         <tr><td>No file existing.</td></tr>

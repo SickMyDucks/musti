@@ -17,10 +17,12 @@ if (isset($_SESSION['username'])) {
 
 
 $uploadOk = 1;
-if (file_exists($target_file) && substr($target_file, -1) != "/") {
+if (isset($target_file)) {
+    if (file_exists($target_file) && substr($target_file, -1) != "/") {
     $logs = "Sorry, file already exists.";
     $uploadOk = 0;
-} 
+    } 
+}
 
 
 if ($is_file_set == true && $uploadOk === 1) {
