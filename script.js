@@ -14,14 +14,14 @@ window.onload = function() {
 
     for (var i in download) {
         download[i].onclick = function() {
-            this.name = this.children[0].attributes[2].value;
+            this.name = this.children[0].id;
         };
     }
     
 
     for (var i in edit) {
         edit[i].onclick = function() {
-            buttonValue = this.children[1].attributes[2].value;
+            buttonValue = this.children[1].id;
             this.parentElement.children[1].children[0].setAttribute('contenteditable', 'true');
             validate = document.createElement('span');
             validate.innerHTML = '<button type="submit" name="' + buttonValue + '" form="files"><i class="fa fa-check" aria-hidden="true" name=></i></button>';
@@ -47,7 +47,7 @@ window.onload = function() {
 
     for (var i in remove) {
         remove[i].onclick = function() {
-            this.name = this.children[0].attributes[2].value;
+            this.name = this.children[0].id;
         };
     }
 };

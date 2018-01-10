@@ -24,9 +24,9 @@
                 <td><i class="fa fa-file" aria-hidden="true"></i></td>
                 <td><span><?= htmlentities($folder[$i])?></span></td>
                 <td><?= date ("d/n/Y - H:i:s", filemtime("users/".$_SESSION['username']."/".$folder[$i]))?></td>
-                <td><button type="submit" class="download" form="files"><i class="fa fa-download" aria-hidden="true" name="download<?=$i?>"></i></button></td>
-                <td><input type="hidden"><i class="fa fa-pencil" aria-hidden="true" name="edit<?=$i?>"></i></td>
-                <td><button type="submit" class="delete" form="files"><i class="fa fa-trash" aria-hidden="true" name="delete<?=$i?>"></i></button></td>
+                <td><button type="submit" class="download" form="files"><i class="fa fa-download" aria-hidden="true" id="download<?=$i?>"></i></button></td>
+                <td><input type="hidden"><i class="fa fa-pencil" aria-hidden="true" id="edit<?=$i?>"></i></td>
+                <td><button type="submit" class="delete" form="files"><i class="fa fa-trash" aria-hidden="true" id="delete<?=$i?>"></i></button></td>
             </tr>
         <?php endfor;?>
     </table>
