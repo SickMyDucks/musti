@@ -68,6 +68,7 @@ if (isset(array_keys($_POST)[0])) {
             $logs = 'File deleted.';
             /* End Delete */
         }
+        header('Location: index.php');
     }
 }
 
