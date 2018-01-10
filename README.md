@@ -37,4 +37,4 @@ password : `corgibutt`
 Otherwise, you can simply create a new account by registering.
 
 ## Directories access
-in the directory `users/` there is a `.htaccess` (Apache) that will prevent any user, logged in or not to download or display in the browser any file. It will return a 403 Forbiden error instead.
+in the directory `users/` there is a `.htaccess` (Apache) that will prevent any user, logged in or not to download or display in the browser any file that doesn't belong to him. It will return a 403 Forbiden error instead.
