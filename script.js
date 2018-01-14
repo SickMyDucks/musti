@@ -1,10 +1,10 @@
 window.onload = function() {
     logs = document.querySelector('.logs');
-    if (logs.innerHTML == 'Sorry, file already exists.' || logs.innerHTML == "Invalid username or password") {
-        logs.style.color = 'red';
+    if (logs.innerHTML == 'File Edited' || logs.innerHTML == "File deleted.") {
+        logs.style.color = 'green';
         cleanLogs(2000);
     } else {
-        logs.style.color = 'green';
+        logs.style.color = 'red';
         cleanLogs(2000);
     }
 

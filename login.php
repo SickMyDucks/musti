@@ -46,6 +46,7 @@ ob_start();
     <input type="password" name="password" id="password">
     <button type="submit">Login</button>
 </form>
+<a href="lostpassword.php" class="password_reset">I lost my password</a>
 <?php
 $content = ob_get_contents();
 ob_end_clean();

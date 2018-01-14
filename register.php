@@ -87,7 +87,7 @@ ob_start();
     <label>Repeat password</label>
     <input type="password" name="password_verification"><br>
     <input type="hidden" name="sent" value="1">
-    <input type="submit">
+    <button type="submit">Register</button>
 </form>
 <?php
 $content = ob_get_contents();
