@@ -18,10 +18,10 @@ if (isset($_POST['email'])) {
 
     $isFormValid = true;
     if (strlen($_POST['password']) < 8) {
-        $error = 'Password too short';
+        $logs = 'Password too short';
         $isFormValid = false;
-    } elseif ($_POST['password'] != $_POST['password_verification']) {
-        $error = "Passwords do not match";
+    } elseif ($_POST['password'] != $_POST['password_repeat']) {
+        $logs = "Passwords do not match";
         $isFormValid = false;
     }
     if ($isFormValid == false) {
@@ -33,15 +33,22 @@ if (isset($_POST['email'])) {
         mysqli_stmt_bind_param($stmt, 'ss', $hashed_password, $user['id']);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
+        $q = "UPDATE `users` SET `temp_password` = '' WHERE `users`.`id` =  ?";
+        $stmt = mysqli_prepare($link, $q);
+        mysqli_stmt_bind_param($stmt, 's', $user['id']);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        $logs = "Password changed successfully";
+        header("refresh: 2; ./login.php");
     } else {
-        $error = "Code incorrect.";
+        $logs = "Code incorrect.";
     }
 }
 
 ob_start();
 ?>
 <form action="passwordreset.php" method="post">
-    <div class="logs"><?= $error ?></div>
+    <div class="logs"><?= $logs ?></div>
     <label for="email">Email : </label><input type="email" name="email" id="email" value="<?php if (isset($email)){echo $email;}?>"><br>
     <label for="code_sent">Code sent by email : </label>
     <input type="text" name="code_sent" id="code_sent"><br>

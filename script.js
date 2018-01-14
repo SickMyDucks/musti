@@ -1,6 +1,6 @@
 window.onload = function() {
     logs = document.querySelector('.logs');
-    if (logs.innerHTML == 'File Edited' || logs.innerHTML == "File deleted.") {
+    if (logs.innerHTML == 'File Edited' || logs.innerHTML == "File deleted." || logs.innerHTML == "Password changed successfully") {
         logs.style.color = 'green';
         cleanLogs(2000);
     } else {
