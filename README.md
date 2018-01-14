@@ -38,3 +38,8 @@ Otherwise, you can simply create a new account by registering.
 
 ## Directories access
 in the directory `users/` there is a `.htaccess` (Apache) that will prevent any user, logged in or not to download or display in the browser any file that doesn't belong to him. It will return a 403 Forbiden error instead.
+
+## Password resetting with mail
+Passwords can be reset thanks to the library Phpmailer. to install it, at the root of the repertory install the library with `composer require phpmailer/phpmailer`
+
+Edit your credentials in the lostpassword.php file to put yours, so it will work with your email address. Otherwise, it should work with mine for the moment.
