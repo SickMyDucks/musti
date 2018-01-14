@@ -1,5 +1,7 @@
 # musti
 
+There is currently a live demo available at : http://musti.keepthis4.me
+
 ## Database
 
 Make sure you replace the credentials in `init.php` with yours, so queries can work.
