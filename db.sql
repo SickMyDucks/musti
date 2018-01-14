@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Mar 09 Janvier 2018 à 00:50
+-- Généré le :  Dim 14 Janvier 2018 à 19:19
 -- Version du serveur :  10.1.23-MariaDB-9+deb9u1
 -- Version de PHP :  7.0.19-1
 
@@ -33,15 +33,16 @@ CREATE TABLE `users` (
   `lastname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `temp_password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
-(1, '2018-01-07 00:38:26', 'John', 'Doe', 'johndoe', 'me@johndoe.pizza', '$2y$10$nNjJ28i6n/ku5nNmL8R1OeRqrjv3SD5uVBAnBnvDAcg3D7xk6daGC');
+INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `username`, `email`, `password`, `temp_password`) VALUES
+(1, '2018-01-07 00:38:26', 'John', 'Doe', 'johndoe', 'me@johndoe.pizza', '$2y$10$nNjJ28i6n/ku5nNmL8R1OeRqrjv3SD5uVBAnBnvDAcg3D7xk6daGC', '');
 
 --
 -- Index pour les tables exportées
