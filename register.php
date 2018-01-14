@@ -18,6 +18,19 @@ if (!empty($_POST['sent']))
     }
     mysqli_stmt_close($stmt);
 
+    $q = "SELECT email FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($link, $q);
+    mysqli_stmt_bind_param($stmt, 's', $_POST['email']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $existingEmail);
+    
+    while (mysqli_stmt_fetch($stmt))
+    {   
+        $existingEmail = $existingEmail;
+        var_dump($existingEmail);
+    }
+    mysqli_stmt_close($stmt);
+
     $isFormValid = true;
     if (strlen($_POST['username']) < 4) {
         $username_error = "Username too short";
@@ -27,6 +40,9 @@ if (!empty($_POST['sent']))
         $isFormValid = false;
     } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $email_error = "Invalid email !";
+        $isFormValid = false;
+    } elseif (!empty($existingEmail)) {
+        $email_error = "Email already in use on our site";
         $isFormValid = false;
     } elseif (strlen($_POST['password']) < 8) {
         $password_error = 'Password too short';
