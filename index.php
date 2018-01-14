@@ -59,6 +59,7 @@ if (isset(array_keys($_POST)[0])) {
         } else if (substr($key, 0, 4) == "edit") {
             $new_file_path = "users/" . $_SESSION['username'] . "/" . $_POST[$key];
             rename('users/'.$_SESSION['username'].'/'.$currentFolder[$file_key], $new_file_path);
+            touch($new_file_path);
             $logs = 'File Edited';
         /* End Edit */
 
